@@ -1,9 +1,16 @@
-import { Resolver, Query } from '@nestjs/graphql';
+import { Query, Resolver } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 
-@Resolver()
+@ObjectType()
+class Message {
+  @Field()
+  text: string;
+}
+
+@Resolver(() => Message)
 export class AppResolver {
-  @Query(() => String)
-  hello(): string {
-    return 'Hello GraphQL!';
+  @Query(() => Message)
+  hello(): Message {
+    return { text: 'Hello GraphQL with NestJS!' };
   }
 }
