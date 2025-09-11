@@ -2,10 +2,33 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Message {
-  text: String!
+input CreateUserInput {
+  age: Int
+  email: String!
+  name: String!
+}
+
+type Mutation {
+  create(createUserInput: CreateUserInput!): User!
+  remove(id: Int!): User!
+  update(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
-  hello: Message!
+  user(id: Int!): User!
+  users: [User!]!
+}
+
+input UpdateUserInput {
+  age: Int
+  email: String
+  id: Int!
+  name: String
+}
+
+type User {
+  age: Float
+  email: String!
+  id: Int!
+  name: String!
 }
